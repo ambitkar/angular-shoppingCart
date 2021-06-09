@@ -1,0 +1,10 @@
+
+.form-inline {
+    display: flex;
+}
+.input-box {
+    width: 800px;
+}
+.header-text {
+    text-align: center;
+}

@@ -1,0 +1,12 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand header-text col-3" href="#">Shopping World</a>
+    <div>
+        <form class="form-inline col-9 " (ngSubmit)="onSubmit()">
+            <input class="form-control input-box" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchItem" name="search">
+            
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</nav>
+
+

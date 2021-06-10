@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { SearchTextService } from '../services/search-text.service';
 
 
 @Component({
@@ -8,12 +9,11 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  searchItem: string | undefined;
+  searchItem: String =new String;
   product: any[] = [];
-  results: any[] = [];
 
 
-  constructor(private api: ProductService) { }
+  constructor(private api: ProductService,private search: SearchTextService) { }
 
 
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   onSubmit() {
     //return this.searchItem;
     console.log(this.searchItem);
-    this.searchResult();
+    this.search.sendSearchText(this.searchItem);
   }
   
   getProductList(){
@@ -32,16 +32,12 @@ export class HeaderComponent implements OnInit {
       console.log(this.product.length)
     })
   }
-  searchResult(){
-    console.log(this.product.length)
-    for (var i = 0; i < this.product.length; i++) {
-      const element = this.product[i];
-      if (element.name.toLowerCase().includes(this.searchItem)) {
-        this.results.push(element);
-    } else {
-      alert('not available!');
-    }
+
+  space(event: any){
+    if(event.target.selectionStart === 0 && event.code === "Space"){
+      event.preventDefault();
     }
   }
+  
 
 }

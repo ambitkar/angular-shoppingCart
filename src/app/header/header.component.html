@@ -3,11 +3,12 @@
     <div>
         <form class="form-inline col-9 ">
           <!-- <form class="form-inline col-9 " (ngSubmit)="onSubmit()"> -->
-            <input class="form-control input-box" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchItem"  (ngModelChange)="onSubmit()" name="search" (keydown)="space($event)">
+            <input class="form-control input-box" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchItem"  (change)="onSubmit()" name="search" (keydown)="space($event)">
             
             <!-- <button type="submit" class="btn btn-success">Submit</button> -->
         </form>
     </div>
+    <button (click)="onCartClick()">Cart</button>
 </nav>
 
 

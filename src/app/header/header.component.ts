@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { SearchTextService } from '../services/search-text.service';
 
@@ -9,12 +10,12 @@ import { SearchTextService } from '../services/search-text.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() searchString = new EventEmitter<String>();
+  @Output() searchString: EventEmitter<String> = new EventEmitter();
   searchItem: String =new String;
   product: any[] = [];
 
 
-  constructor(private api: ProductService,private search: SearchTextService) { }
+  constructor(private productService: ProductService,private searchTextService: SearchTextService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -22,12 +23,12 @@ export class HeaderComponent implements OnInit {
   }
   
   onSubmit() {
-    this.search.sendSearchText(this.searchItem);
+    this.searchTextService.sendSearchText(this.searchItem);
     this.searchString.emit(this.searchItem);
   }
   
   getProductList(){
-    this.api.getJsonData().subscribe(response=>{
+    this.productService.getJsonData().subscribe(response=>{
       this.product=response;
     })
   }
@@ -36,6 +37,10 @@ export class HeaderComponent implements OnInit {
     if(event.target.selectionStart === 0 && event.code === "Space"){
       event.preventDefault();
     }
+  }
+
+  onCartClick(){
+    this.router.navigate(['/cart']);
   }
   
 

@@ -1,0 +1,15 @@
+<div *ngIf="cartStaus==false">
+    No Items available in your cart!
+</div>
+<div *ngIf="cartStaus==true">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let i of cartitems">
+            <span>{{i.p_name}}</span> *
+            <span>{{i.p_qty}}</span> =
+            <span>{{(i.p_qty*i.p_price) | currency:'INR'}}</span>
+        </li>
+        <li class="list-group-item active">
+            <strong>Total:{{cartTotal | currency:'INR'}}</strong>
+        </li>
+    </ul>
+</div>

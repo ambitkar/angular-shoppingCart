@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchTextService {
-  private subject = new BehaviorSubject<String>('default');
+  private subject = new BehaviorSubject<any>(null);
 
   constructor() { }
 

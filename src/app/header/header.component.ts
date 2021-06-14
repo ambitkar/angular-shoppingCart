@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { SearchTextService } from '../services/search-text.service';
 
@@ -9,6 +9,7 @@ import { SearchTextService } from '../services/search-text.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Output() searchString = new EventEmitter<String>();
   searchItem: String =new String;
   product: any[] = [];
 
@@ -21,15 +22,13 @@ export class HeaderComponent implements OnInit {
   }
   
   onSubmit() {
-    //return this.searchItem;
-    console.log(this.searchItem);
     this.search.sendSearchText(this.searchItem);
+    this.searchString.emit(this.searchItem);
   }
   
   getProductList(){
     this.api.getJsonData().subscribe(response=>{
       this.product=response;
-      console.log(this.product.length)
     })
   }
 

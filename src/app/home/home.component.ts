@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ProductService } from 'src/app/services/product.service'
+import { ProductService } from '../services/product.service'
 import { SearchTextService } from '../services/search-text.service';
 
 @Component({
@@ -28,24 +28,18 @@ export class HomeComponent implements OnInit {
       } else {
         this.searchResult(this.searchText);
       }
-      console.log(this.searchText)
     });
-    console.log(this.searchText)
   }
   getProductList() {
     this.api.getJsonData().subscribe(response => {
-      console.log(response);
       this.product = response;
     })
   }
   onClick(id: any) {
-    alert(id)
-    console.log(id)
-    this.router.navigate(['/product-details', { id: id }]);
+    this.router.navigate(['/product-details', { id }]);
   }
 
   searchResult(text: String) {
-    console.log(this.product.length)
     this.product = this.product.filter(function (item) {
       return item.name.toLowerCase().includes(text.toLowerCase())
     })

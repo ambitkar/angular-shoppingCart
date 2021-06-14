@@ -16,7 +16,6 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductList();
-    console.log(this.route.snapshot.paramMap.get('id'));
     this.id=this.route.snapshot.paramMap.get('id');
     
     
@@ -29,15 +28,12 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProdDetails(){
-    alert(this.id)
     for (var i = 0; i < this.product.length; i++) {
       const element = this.product[i];
       if (this.id==element.id) {
         this.selectedProduct.push(element);
         console.log(this.selectedProduct[0])
         break;
-    } else {
-      alert('not available!');
     }
     }
     

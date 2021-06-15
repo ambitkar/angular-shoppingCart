@@ -1,7 +1,7 @@
-<div *ngIf="cartStaus==false">
+<div class="card box" *ngIf="cartStaus==false">
     No Items available in your cart!
 </div>
-<div *ngIf="cartStaus==true">
+<div class="card box" *ngIf="cartStaus==true">
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let i of cartitems">
             <span>{{i.p_name}}</span> *
@@ -9,7 +9,7 @@
             <span>{{(i.p_qty*i.p_price) | currency:'INR'}}</span>
         </li>
         <li class="list-group-item active">
-            <strong>Total:{{cartTotal | currency:'INR'}}</strong>
+            <span>Total:{{cartTotal | currency:'INR'}}</span>
         </li>
     </ul>
 </div>

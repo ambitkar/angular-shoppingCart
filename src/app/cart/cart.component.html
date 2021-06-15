@@ -1,7 +1,7 @@
-<div class="card box" *ngIf="cartStaus==false">
+<div class="card box" *ngIf="!cartitems?.length">
     No Items available in your cart!
 </div>
-<div class="card box" *ngIf="cartStaus==true">
+<div class="card box" *ngIf="cartitems?.length">
     <ul class="list-group">
         <li class="list-group-item">
             <table class="table">

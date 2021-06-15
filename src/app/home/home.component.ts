@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnChanges {
   cartItems: any[] = [];
 
   constructor(private productService: ProductService, private cartCounterService: CartCounterService, private cartService: CartService, private router: Router) { }
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.inputSearchText)
     if (this.inputSearchText == null || this.inputSearchText == '') {
@@ -53,8 +54,8 @@ export class HomeComponent implements OnInit, OnChanges {
   }
   onClickCart(item: any) {
 
-
-    if (this.cartItems.length === 0) {
+    console.log(!this.cartItems.length)
+    if (!this.cartItems.length) {
       this.cartItems.push({
         p_id: item.id,
         p_name: item.name,

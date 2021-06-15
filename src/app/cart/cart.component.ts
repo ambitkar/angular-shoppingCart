@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    console.log(this.cartitems.length)
     this.cartService.getItem().subscribe((item: any) => {
       console.log(item)
       this.cartitems = item;
@@ -48,6 +49,7 @@ export class CartComponent implements OnInit {
                 this.cartitems.splice(i,1);
             }
         }
+        this.calculateCart();
     }else{
       item.p_qty--;
       this.calculateCart();

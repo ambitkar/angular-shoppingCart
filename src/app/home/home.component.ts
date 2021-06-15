@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
   }
   onClickCart(item: any) {
     
-    alert('Item added to cart.');
+    
     if(this.cartItems.length === 0){
       this.cartItems.push({
         p_id: item.id,
@@ -67,9 +67,9 @@ export class HomeComponent implements OnInit {
         }
       }
     }
-    
    
     this.cartService.sendItem(this.cartItems);
+    alert('Item added to cart.');
   }
 
   searchResult(text: String) {

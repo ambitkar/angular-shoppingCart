@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
-import { SearchTextService } from '../services/search-text.service';
+import { CartCounterService } from '../services/cart-counter.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   product: any[] = [];
 
 
-  constructor(private productService: ProductService, private searchTextService: SearchTextService, private router: Router) { }
+  constructor(private productService: ProductService, private cartCounterService: CartCounterService, private router: Router) { }
   ngAfterViewInit(): void {
     this.cartNo=0;
   }
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
     this.getProductList();
     this.cartNo=0;
-    this.searchTextService.getCartNo().subscribe((e) => {
+    this.cartCounterService.getCartNo().subscribe((e) => {
       this.cartNo = e;
       console.log(e);
     });

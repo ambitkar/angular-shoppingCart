@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
-import { SearchTextService } from '../services/search-text.service';
+import { CartCounterService } from '../services/cart-counter.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit, OnChanges {
   searchText: String = new String;
   cartItems: any[] = [];
 
-  constructor(private productService: ProductService, private searchTextService: SearchTextService, private cartService: CartService, private router: Router) { }
+  constructor(private productService: ProductService, private cartCounterService: CartCounterService, private cartService: CartService, private router: Router) { }
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.inputSearchText)
     if (this.inputSearchText == null || this.inputSearchText == '') {
@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnChanges {
         p_price: item.price,
         p_qty: 1
       });
-      this.searchTextService.sendCartNo(this.cartItems.length);
+      this.cartCounterService.sendCartNo(this.cartItems.length);
     } else {
       for (let i in this.cartItems) {
         if (this.cartItems[i].p_id === item.id) {
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, OnChanges {
             p_price: item.price,
             p_qty: 1
           });
-          this.searchTextService.sendCartNo(this.cartItems.length);
+          this.cartCounterService.sendCartNo(this.cartItems.length);
           break;
         }
       }

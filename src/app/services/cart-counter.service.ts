@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SearchTextService {
+export class CartCounterService {
   // private subject = new BehaviorSubject<any>(null);
 
   // constructor() { }

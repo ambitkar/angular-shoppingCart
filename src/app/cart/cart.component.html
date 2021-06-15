@@ -3,10 +3,28 @@
 </div>
 <div class="card box" *ngIf="cartStaus==true">
     <ul class="list-group">
-        <li class="list-group-item" *ngFor="let i of cartitems">
-            <span>{{i.p_name}}</span> *
+        <li class="list-group-item">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">item name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i of cartitems">
+                    <td>{{i.p_name}}</td>
+                    <td>{{i.p_qty}}</td>
+                    <td>@{{(i.p_qty*i.p_price) | currency:'INR'}}</td>
+                    <!-- <td><button (click)="onClickAdd(i)">add</button></td>
+                    <td><button (click)="onClickRemove(i)">remove</button></td> -->
+                  </tr>
+                </tbody>
+              </table>
+            <!-- <span>{{i.p_name}}</span> *
             <span>{{i.p_qty}}</span> =
-            <span>{{(i.p_qty*i.p_price) | currency:'INR'}}</span>
+            <span>{{(i.p_qty*i.p_price) | currency:'INR'}}</span> -->
         </li>
         <li class="list-group-item active">
             <span>Total:{{cartTotal | currency:'INR'}}</span>

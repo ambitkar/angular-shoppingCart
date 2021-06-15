@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainpageComponent implements OnInit {
 
-  searchString= 'hii';
+  searchString= '';
 
   constructor() { }
 
@@ -16,7 +16,6 @@ export class MainpageComponent implements OnInit {
 
   getSearchString(text: any){
     this.searchString=text;
-    console.log(this.searchString)
   }
 
 }

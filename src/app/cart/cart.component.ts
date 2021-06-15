@@ -7,31 +7,47 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartitems : any[] = [];
+  cartitems: any[] = [];
   cartTotal: number = 0;
-  cartStaus:boolean =false
+  cartStaus: boolean = false
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.cartService.getItem().subscribe((item:any) =>{
+    this.cartService.getItem().subscribe((item: any) => {
       console.log(item)
-      this.cartitems=item;
+      this.cartitems = item;
       console.log(this.cartitems);
-      if(this.cartitems === null){
-        this.cartStaus=false;
+      if (this.cartitems === null) {
+        this.cartStaus = false;
         return;
-      }else{
-        this.cartStaus=true;
+      } else {
+        this.cartStaus = true;
         this.calculateCart();
       }
-      
+
     })
   }
-  calculateCart(){
+  calculateCart() {
     this.cartitems.forEach(item => {
-      this.cartTotal+=(item.p_qty * item.p_price);
+      this.cartTotal += (item.p_qty * item.p_price);
     })
   }
+
+  // onClickAdd(item:any) { 
+  //   console.log(item)
+  //   item.p_qty++;
+  // }
+  // onClickRemove(item:any) { 
+  //   if(item.p_qty == 0){
+  //       for(let i = 0; i < this.cartitems.length; ++i){
+  //           if (this.cartitems[i].id === item.p_id) {
+  //               this.cartitems.splice(i,1);
+  //           }
+  //       }
+  //   }else{
+  //     item.p_qty--;
+  //   }
+  // }
 
 }

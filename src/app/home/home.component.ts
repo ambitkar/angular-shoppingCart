@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,27 +12,36 @@ import { SearchTextService } from '../services/search-text.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  @Input() inputSearchText = new String;
+export class HomeComponent implements OnInit, OnChanges {
+  @Input() inputSearchText = '';
   product: any[] = [];
   results: any[] = [];
   $text: Subscription = new Subscription;
   searchText: String = new String;
   cartItems: any[] = [];
 
-  constructor(private productService: ProductService, private searchTextService: SearchTextService,private cartService: CartService, private router: Router) { }
+  constructor(private productService: ProductService, private searchTextService: SearchTextService, private cartService: CartService, private router: Router) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.inputSearchText)
+    if (this.inputSearchText == null || this.inputSearchText == '') {
+      this.getProductList();
+    } else {
+      this.searchResult(this.inputSearchText);
+    }
+
+  }
 
   ngOnInit(): void {
     console.log(this.inputSearchText);
     this.getProductList();
-    this.$text = this.searchTextService.getSearchtext().subscribe((e) => {
-      this.searchText = e;
-      if (this.searchText == null || this.searchText == '') {
-        this.getProductList();
-      } else {
-        this.searchResult(this.searchText);
-      }
-    });
+    // this.$text = this.searchTextService.getSearchtext().subscribe((e) => {
+    //   this.searchText = e;
+    //   if (this.searchText == null || this.searchText == '') {
+    //     this.getProductList();
+    //   } else {
+    //     this.searchResult(this.searchText);
+    //   }
+    // });
   }
   getProductList() {
     this.productService.getJsonData().subscribe(response => {
@@ -43,31 +52,34 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/product-details', { id }]);
   }
   onClickCart(item: any) {
-    
-    
-    if(this.cartItems.length === 0){
+
+
+    if (this.cartItems.length === 0) {
       this.cartItems.push({
         p_id: item.id,
         p_name: item.name,
         p_price: item.price,
         p_qty: 1
       });
-    }else{
-      for(let i in this.cartItems){
-        if(this.cartItems[i].p_id === item.id){
+      this.searchTextService.sendCartNo(this.cartItems.length);
+    } else {
+      for (let i in this.cartItems) {
+        if (this.cartItems[i].p_id === item.id) {
           this.cartItems[i].p_qty++;
           break;
-        }else{
+        } else {
           this.cartItems.push({
             p_id: item.id,
             p_name: item.name,
             p_price: item.price,
             p_qty: 1
           });
+          this.searchTextService.sendCartNo(this.cartItems.length);
+          break;
         }
       }
     }
-   
+
     this.cartService.sendItem(this.cartItems);
     alert('Item added to cart.');
   }

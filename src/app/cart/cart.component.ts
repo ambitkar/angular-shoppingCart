@@ -29,25 +29,29 @@ export class CartComponent implements OnInit {
     })
   }
   calculateCart() {
+    console.log(this.cartitems)
+    this.cartTotal = 0;
     this.cartitems.forEach(item => {
       this.cartTotal += (item.p_qty * item.p_price);
     })
   }
 
-  // onClickAdd(item:any) { 
-  //   console.log(item)
-  //   item.p_qty++;
-  // }
-  // onClickRemove(item:any) { 
-  //   if(item.p_qty == 0){
-  //       for(let i = 0; i < this.cartitems.length; ++i){
-  //           if (this.cartitems[i].id === item.p_id) {
-  //               this.cartitems.splice(i,1);
-  //           }
-  //       }
-  //   }else{
-  //     item.p_qty--;
-  //   }
-  // }
+  onClickAdd(item:any) { 
+    console.log(item)
+    item.p_qty++;
+    this.calculateCart();
+  }
+  onClickRemove(item:any) { 
+    if(item.p_qty == 1){
+        for(let i = 0; i < this.cartitems.length; ++i){
+            if (this.cartitems[i].p_id === item.p_id) {
+                this.cartitems.splice(i,1);
+            }
+        }
+    }else{
+      item.p_qty--;
+      this.calculateCart();
+    }
+  }
 
 }

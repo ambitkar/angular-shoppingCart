@@ -10,7 +10,6 @@ export class CartService {
   constructor() { }
 
   sendItem(item:any){
-    //console.log(item)
     this.subject.next(item);
   }
   getItem(){

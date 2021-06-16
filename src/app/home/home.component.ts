@@ -17,13 +17,12 @@ export class HomeComponent implements OnInit, OnChanges {
   product: any[] = [];
   results: any[] = [];
   $text: Subscription = new Subscription;
-  searchText: String = new String;
+  searchText: String = '';
   cartItems: any[] = [];
 
   constructor(private productService: ProductService, private cartCounterService: CartCounterService, private cartService: CartService, private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.inputSearchText)
     if (this.inputSearchText == null || this.inputSearchText == '') {
       this.getProductList();
     } else {
@@ -53,8 +52,6 @@ export class HomeComponent implements OnInit, OnChanges {
     this.router.navigate(['/product-details', { id }]);
   }
   onClickCart(item: any) {
-
-    console.log(!this.cartItems.length)
     if (!this.cartItems.length) {
       this.cartItems.push({
         p_id: item.id,
@@ -62,7 +59,7 @@ export class HomeComponent implements OnInit, OnChanges {
         p_price: item.price,
         p_qty: 1
       });
-      this.cartCounterService.sendCartNo(this.cartItems.length);
+      this.cartCounterService.sendCartCount(this.cartItems.length);
     } else {
       for (let i in this.cartItems) {
         if (this.cartItems[i].p_id === item.id) {
@@ -75,7 +72,7 @@ export class HomeComponent implements OnInit, OnChanges {
             p_price: item.price,
             p_qty: 1
           });
-          this.cartCounterService.sendCartNo(this.cartItems.length);
+          this.cartCounterService.sendCartCount(this.cartItems.length);
           break;
         }
       }

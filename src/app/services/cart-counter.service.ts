@@ -20,10 +20,10 @@ export class CartCounterService {
 
   constructor() { }
 
-  sendCartNo(no: number){
-    this.subject.next(no);
+  sendCartCount(count: number){
+    this.subject.next(count);
   }
-  getCartNo(){
+  getCartCount(){
     return this.subject.asObservable();
   }
 }

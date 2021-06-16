@@ -11,23 +11,22 @@ import { CartCounterService } from '../services/cart-counter.service';
 })
 export class HeaderComponent implements OnInit,AfterViewInit {
   @Output() searchString: EventEmitter<String> = new EventEmitter();
-  cartNo = 0;
+  cartCount = 0;
   searchItem: String = new String;
   product: any[] = [];
 
 
   constructor(private productService: ProductService, private cartCounterService: CartCounterService, private router: Router) { }
   ngAfterViewInit(): void {
-    this.cartNo=0;
+    this.cartCount=0;
   }
 
 
   ngOnInit(): void {
     this.getProductList();
-    this.cartNo=0;
-    this.cartCounterService.getCartNo().subscribe((e) => {
-      this.cartNo = e;
-      console.log(e);
+    this.cartCount=0;
+    this.cartCounterService.getCartCount().subscribe((value) => {
+      this.cartCount = value;
     });
   }
 

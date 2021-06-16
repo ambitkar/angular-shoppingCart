@@ -8,35 +8,33 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  product: any[]=[];
-  selectedProduct: any[]=[];
+  product: any[] = [];
+  selectedProduct: any[] = [];
   id: string | null | undefined;
 
   constructor(private api: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getProductList();
-    this.id=this.route.snapshot.paramMap.get('id');
-    
-    
+    this.id = this.route.snapshot.paramMap.get('id');
   }
-  getProductList(){
-    this.api.getJsonData().subscribe(response=>{
-      this.product=response;
+
+  getProductList() {
+    this.api.getJsonData().subscribe(response => {
+      this.product = response;
       this.getProdDetails();
     })
   }
 
-  getProdDetails(){
+  getProdDetails() {
     for (var i = 0; i < this.product.length; i++) {
       const element = this.product[i];
-      if (this.id==element.id) {
+      if (this.id == element.id) {
         this.selectedProduct.push(element);
         console.log(this.selectedProduct[0])
         break;
+      }
     }
-    }
-    
   }
 
 }

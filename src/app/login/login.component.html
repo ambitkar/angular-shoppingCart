@@ -1,0 +1,47 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="card">
+                    <div class="card-header" *ngIf="signInStat">
+                        <div class="text-center">
+                            <h3>You're already Signed In!</h3>
+                        </div>
+                    </div>
+                    <div class="card-header" *ngIf="!signInStat">
+                        <div class="text-center">
+                            <h3>Sign In</h3>
+                        </div>
+                    </div>
+                    <div class="card-body" *ngIf="!signInStat">
+                        <div class="row">
+                            <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+                                <div class="form-group">
+                                    <label>Email/Phone No.</label>
+                                    <input type="text" class="form-control" formControlName="userid">
+                                    <div class="error text-warning mt-2 font-13"
+                                        *ngIf="signinForm.controls['userid'].hasError('required') && signinForm.controls['userid'].touched">
+                                        UserId is required</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" formControlName="password">
+                                    <div class="error text-warning mt-2 font-13"
+                                        *ngIf="signinForm.controls['password'].hasError('required') && signinForm.controls['password'].touched">
+                                        Password is required</div>
+                                </div>
+                                <div class="space"></div>
+                                <div class="text-center">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success"
+                                            [disabled]="signinForm.invalid">Sign In</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

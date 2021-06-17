@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand header-text col-3" href="#">Shopping World</a>
+    <h3 class="text">Welcome {{username}}</h3>
+    <h2 class="navbar-brand header-text col-3">Shopping World</h2>
     <div>
         <form class="form-inline col-9 ">
           <!-- <form class="form-inline col-9 " (ngSubmit)="onSubmit()"> -->
@@ -9,6 +10,12 @@
         </form>
     </div>
     <button (click)="onCartClick()">Cart({{cartCount}})</button>
+    <button (click)="onRegisterClick()">{{registerBtnName}}</button>
+    <button *ngIf="username!=''" (click)="onLogoutClick()">Delete Account</button>
+    <!-- <div class="logout">
+        <button>Sign Out</button>
+        <button>Delete Account</button>
+    </div> -->
 </nav>
 
 

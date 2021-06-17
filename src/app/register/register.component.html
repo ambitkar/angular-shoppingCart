@@ -1,0 +1,78 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="card">
+                    <div class="card-header" *ngIf="regdStat">
+                        <div class="text-center">
+                            <h3>You're already Registered!</h3>
+                        </div>
+                    </div>
+                    <div class="card-header" *ngIf="!regdStat">
+                        <div class="text-center">
+                            <h3>Sign Up</h3>
+                        </div>
+                    </div>
+                    <div class="card-body" *ngIf="!regdStat">
+                        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" formControlName="firstname">
+                                        <div class="error text-warning"
+                                            *ngIf="registrationForm.controls['firstname'].hasError('required') && registrationForm.controls['firstname'].touched">
+                                            First name is required</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" formControlName="lastname">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" formControlName="email" >
+                                <div class="error text-warning"
+                                    *ngIf="registrationForm.controls['email'].hasError('required') && registrationForm.controls['email'].touched">
+                                    Email is required</div>
+                                <div class="error text-warning"
+                                    *ngIf="registrationForm.controls['email'].hasError('pattern')">
+                                    Enter valid email address</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" formControlName="phone">
+                                <div class="error text-warning"
+                                    *ngIf="registrationForm.controls['phone'].hasError('required') && registrationForm.controls['phone'].touched">
+                                    Phone No. is required</div>
+                                <div *ngIf="registrationForm.controls['phone'].hasError('pattern')"
+                                    class="error text-warning">Please enter 10 digit valid mobile No,</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" formControlName="password">
+                                <div class="error text-warning"
+                                    *ngIf="registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched">
+                                    Password is required</div>
+                                    <div class="error text-warning"
+                                    *ngIf="registrationForm.controls['password'].hasError('pattern')">
+                                    Password must be of atleast 6 characters in length containing 1 Lowercase,1 Uppercase,1 Number,1 Special character</div>
+                            </div>
+                            <div class="space"></div>
+                            <div class="form-group">
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success"
+                                        [disabled]="registrationForm.invalid">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

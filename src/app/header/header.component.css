@@ -3,8 +3,15 @@
     display: flex;
 }
 .input-box {
-    width: 600px;
+    width: 500px;
 }
 .header-text {
     text-align: center;
+}
+.text{
+    color: #ffffff;
+}
+.logout {
+    display: flex;
+    flex-direction: column;
 }

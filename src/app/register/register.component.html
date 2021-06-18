@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label>First Name</label>
+                                        <label>First Name*</label>
                                         <input type="text" class="form-control" formControlName="firstname">
                                         <div class="error text-warning"
                                             *ngIf="registrationForm.controls['firstname'].hasError('required') && registrationForm.controls['firstname'].touched">
@@ -32,10 +32,10 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control" formControlName="email" >
+                                <label>Email*</label>
+                                <input type="email" class="form-control" formControlName="email">
                                 <div class="error text-warning"
                                     *ngIf="registrationForm.controls['email'].hasError('required') && registrationForm.controls['email'].touched">
                                     Email is required</div>
@@ -44,7 +44,7 @@
                                     Enter valid email address</div>
                             </div>
                             <div class="form-group">
-                                <label>Phone Number</label>
+                                <label>Phone Number*</label>
                                 <input type="text" class="form-control" formControlName="phone">
                                 <div class="error text-warning"
                                     *ngIf="registrationForm.controls['phone'].hasError('required') && registrationForm.controls['phone'].touched">
@@ -52,15 +52,40 @@
                                 <div *ngIf="registrationForm.controls['phone'].hasError('pattern')"
                                     class="error text-warning">Please enter 10 digit valid mobile No,</div>
                             </div>
+                            <div class="form-group" formArrayName="address">
+                                <label>Address <button type="button" (click)="addAddressRow()">+</button></label>
+                                <div *ngFor="let skill of address.controls; let i=index" [formGroupName]="i">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" formControlName="at"
+                                                placeholder="At*">
+                                            <div *ngIf="address.controls[i].get('at')?.hasError('required') && address.controls[i].get('at')?.touched"
+                                                class="error text-warning">This field is required</div>
+                                        </div>
+                                        <div class="col-5">
+                                            <input type="text" class="form-control" formControlName="pin"
+                                                placeholder="Pin">
+                                            <div *ngIf="address.controls[i].get('pin')?.hasError('pattern')"
+                                                class="error text-warning">Please enter 6 digit postal code</div>
+                                            <div class="space"></div>
+                                        </div>
+                                        <div class="col-1"  *ngIf="i != 0">
+                                            <button type="button" (click)="rmvAddressRow(i)">-</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
-                                <label>Password</label>
+                                <label>Password*</label>
                                 <input type="password" class="form-control" formControlName="password">
                                 <div class="error text-warning"
                                     *ngIf="registrationForm.controls['password'].hasError('required') && registrationForm.controls['password'].touched">
                                     Password is required</div>
-                                    <div class="error text-warning"
+                                <div class="error text-warning"
                                     *ngIf="registrationForm.controls['password'].hasError('pattern')">
-                                    Password must be of atleast 6 characters in length containing 1 Lowercase,1 Uppercase,1 Number,1 Special character</div>
+                                    Password must be of atleast 6 characters in length containing 1 Lowercase,1
+                                    Uppercase,1
+                                    Number,1 Special character</div>
                             </div>
                             <div class="space"></div>
                             <div class="form-group">

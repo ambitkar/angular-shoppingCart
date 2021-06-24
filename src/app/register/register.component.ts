@@ -29,9 +29,10 @@ export class RegisterComponent implements OnInit {
         this.getAdrresForm()
       ]),
       password: ['', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{5,}')])],
-    });
+      confirm_password: ['', [Validators.required]]
+    }, {validator: this.passwordConfirming});
     //console.log(this.address.controls[0].get('at')?.hasError('required'));
-    
+
   }
   getAdrresForm(): any {
     return this.formBuilder.group({
@@ -40,15 +41,15 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get address() : FormArray {
+  get address(): FormArray {
     return this.registrationForm.get("address") as FormArray
   }
 
-  addAddressRow(){
+  addAddressRow() {
     this.address.push(this.getAdrresForm());
     console.log(this.address)
   }
-  rmvAddressRow(i:any){
+  rmvAddressRow(i: any) {
     // const control = <FormArray>this.registrationForm.controls['address'];
     // control.removeAt(i);
     this.address.removeAt(i);
@@ -59,6 +60,11 @@ export class RegisterComponent implements OnInit {
     localStorage.setItem('loginStatus', this.loginStatus);
     alert('Sign Up Successfull!!');
     this.router.navigate(['/'])
+  }
+
+  passwordConfirming(frm: FormGroup){
+    return frm.get('password')?.value === frm.get('confirm_password')?.value
+       ? null : {'mismatch': true};
   }
 
 }

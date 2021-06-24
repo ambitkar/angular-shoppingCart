@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, OnChanges {
     })
   }
   onClick(id: any) {
-    this.router.navigate(['/product-details', { id }]);
+    this.router.navigate(['/product-details', id ]);
   }
   onClickCart(item: any) {
     if (!this.cartItems.length) {

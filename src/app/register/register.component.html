@@ -59,7 +59,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <input type="text" class="form-control" formControlName="at"
-                                                placeholder="At*">
+                                                placeholder="Street/lane/city*">
                                             <div *ngIf="address.controls[i].get('at')?.hasError('required') && address.controls[i].get('at')?.touched"
                                                 class="error text-warning">This field is required</div>
                                         </div>
@@ -97,6 +97,18 @@
                                     <div class="error text-warning" *ngIf="registrationForm.errors?.mismatch && registrationForm.controls['confirm_password'].dirty">
                                         Password doesn't match
                                     </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Sign Up as:</label>
+                                <select formControlName="role" class="form-control">
+                                    <option disabled>Select Role</option>
+                                    <option>Buyer</option>
+                                    <option>Seller</option>
+                                    <!-- <option *ngFor="let web of websiteList">{{web}}</option> -->
+                                </select>
+                                <!-- <div *ngIf="f.website.touched && f.website.invalid" class="alert alert-danger">
+                                    <div *ngIf="f.website.errors.required">Name is required.</div>
+                                </div> -->
                             </div>
                             <div class="space"></div>
                             <div class="form-group">

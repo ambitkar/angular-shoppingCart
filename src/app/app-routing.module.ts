@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddsellItemComponent } from './addsell-item/addsell-item.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -7,6 +8,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { RegisterComponent } from './register/register.component';
+import { SellerHomeComponent } from './seller-home/seller-home.component';
 
 const routes: Routes = [
   {
@@ -28,6 +30,14 @@ const routes: Routes = [
   {
     path:  'login',
     component: LoginComponent
+  },
+  {
+    path:  'seller-home',
+    component: SellerHomeComponent
+  },
+  {
+    path:  'sell-item/:id',
+    component: AddsellItemComponent
   },
   {
     path: '**',

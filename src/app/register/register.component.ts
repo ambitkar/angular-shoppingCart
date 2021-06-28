@@ -29,15 +29,17 @@ export class RegisterComponent implements OnInit {
         this.getAdrresForm()
       ]),
       password: ['', Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{5,}')])],
-      confirm_password: ['', [Validators.required]]
+      confirm_password: ['', [Validators.required]],
+      role:['',[Validators.required]]
     }, {validator: this.passwordConfirming});
+    
     //console.log(this.address.controls[0].get('at')?.hasError('required'));
 
   }
   getAdrresForm(): any {
     return this.formBuilder.group({
       at: ['', Validators.compose([Validators.required])],
-      pin: ['', [Validators.required, Validators.pattern('[0-9]{5}')]]
+      pin: ['', [Validators.required, Validators.pattern('[0-9]{6}')]]
     });
   }
 
@@ -59,7 +61,11 @@ export class RegisterComponent implements OnInit {
     localStorage.setItem("userData", JSON.stringify(this.registrationForm.value));
     localStorage.setItem('loginStatus', this.loginStatus);
     alert('Sign Up Successfull!!');
-    this.router.navigate(['/'])
+    if(this.registrationForm.controls.role.value == 'Buyer'){
+      this.router.navigate(['/']);
+    }else{
+      this.router.navigate(['/seller-home']);
+    }
   }
 
   passwordConfirming(frm: FormGroup){

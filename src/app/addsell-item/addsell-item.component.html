@@ -1,0 +1,76 @@
+<div class="container item-box">
+    <div class="aditem">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add Item
+        </button>
+    </div>
+    <div *ngIf="!itemList.length">
+        No Items available!!!
+    </div>
+    <div class="row">
+                <div class="col-md-4" *ngFor="let i of itemList">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top"
+                            data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                            alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                            src={{i.p_img}}
+                            data-holder-rendered="true">
+                        <div class="card-body">
+                            <p class="card-text">{{i.p_name}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    {{i.p_desc}}
+                                </div>
+                                <p class="price-text">{{i.p_price | currency:'INR'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" class="form-control" formControlName="name">
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="text" class="form-control" formControlName="price">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" class="form-control" formControlName="desc">
+                            </div>
+                            <div class="form-group">
+                                <label for="file">Choose File</label>
+                                <input type="file" formControlName="image" id="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="addItemForm.invalid">Add Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -16,7 +16,10 @@ export class AddsellItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemId = this.route.snapshot.paramMap.get('id');
+    this.itemId = +this.itemId-1;
     this.categoryList= JSON.parse(localStorage.getItem('category') || '[]');
+    
+    console.log(this.categoryList[this.itemId].items)
     if(!this.categoryList.length){
       this.itemList=[]
     }else{

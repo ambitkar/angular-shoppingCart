@@ -1,0 +1,31 @@
+[
+
+    {
+        "id":1,
+        "name": "Dell",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "price": 29999,
+        "imageUrl": "https://miro.medium.com/max/9968/1*2fAtste9D54C_0NgIBJbuA.jpeg"
+    },
+    {
+        "id":2,
+        "name": "Lenovo",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "price": 19999,
+        "imageUrl": "https://miro.medium.com/max/9968/1*2fAtste9D54C_0NgIBJbuA.jpeg"
+    },
+    {
+        "id":3,
+        "name": "Apple(512GB)",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "price": 69999,
+        "imageUrl": "https://miro.medium.com/max/9968/1*2fAtste9D54C_0NgIBJbuA.jpeg"
+    },
+    {
+        "id":4,
+        "name": "Hp(2021, 2TB)",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "price": 29999,
+        "imageUrl": "https://miro.medium.com/max/9968/1*2fAtste9D54C_0NgIBJbuA.jpeg"
+    }
+]
